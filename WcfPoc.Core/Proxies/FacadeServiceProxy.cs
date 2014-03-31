@@ -19,8 +19,7 @@ namespace WcfPoc.Core.Proxies
             OperationContextScope contextScope = new OperationContextScope(InnerChannel);
             OperationContext.Current.OutgoingMessageHeaders.Add(applicationNameHeader.GetUntypedHeader("application-name", "ns"));
         }
-
-        public FacadeServiceProxy(Binding binding, EndpointAddress endPointAddress)
+       public FacadeServiceProxy(Binding binding, EndpointAddress endPointAddress)
             : base(binding, endPointAddress)
         {
             string applicationName = "test";
