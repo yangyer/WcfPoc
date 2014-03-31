@@ -15,5 +15,6 @@ namespace WcfPoc.Core
 
         [OperationContract]
         int Add(int num1, int num2);
+
     }
 }

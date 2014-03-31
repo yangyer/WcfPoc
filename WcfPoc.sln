@@ -17,6 +17,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfPoc.Host", "WcfPoc.Host\WcfPoc.Host.csproj", "{D590B850-8A5F-492A-A21E-922E59E9BA98}"
 EndProject
 Global
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = d8ff3e11-16f2-4dc6-aa29-dd49adda7bd3
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
