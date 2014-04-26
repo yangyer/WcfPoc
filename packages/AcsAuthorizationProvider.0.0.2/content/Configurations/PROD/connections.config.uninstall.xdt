@@ -1,0 +1,5 @@
+﻿<?xml version="1.0"?>
+<connectionStrings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <add name="ACSAuthorizationProviderCS" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+  <add name="AcsAuthorizationProviderCS" connectionString="Data Source=[PROD_SERVER];Initial Catalog=[PROD_DB];User ID=[PROD_USER];Password=[PROD_PW]" providerName="System.Data.SqlClient" xdt:Transform="Insert" />
+</connectionStrings>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0"?>
+<appSettings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <add key="AUTHENTICATION_TYPE" value="LDAP" xdt:Transform="InsertAfter(/appSettings/add[@key='CAS_URL'])"/>
+</appSettings>

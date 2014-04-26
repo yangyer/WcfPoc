@@ -1,0 +1,62 @@
+﻿<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections>
+    <section name="AcsAuthorizationProvider.Data" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+    <section name="AcsMembershipProvider" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+    <sectionGroup name="elmah" xdt:Transform="InsertIfMissing">
+      <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah" />
+      <section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah" />
+      <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
+    </sectionGroup>
+  </configSections>
+  <AcsAuthorizationProvider.Data defaultProvider="SqlNetTiersProvider" xdt:Transform="Remove">
+  </AcsAuthorizationProvider.Data>
+  <elmah xdt:Transform="InsertIfMissing(/configuration/configSections)">
+    <security allowRemoteAccess="true" xdt:Transform="InsertIfMissing" />
+    <security allowRemoteAccess="true" xdt:Transform="SetAttributes(allowRemoteAccess)" />
+    <errorLog type="Elmah.SqlErrorLog, Elmah" connectionStringName="ElmahCS" xdt:Transform="InsertIfMissing" />
+    <errorLog type="Elmah.SqlErrorLog, Elmah" xdt:Locator="Match(type)" xdt:Transform="SetAttributes(connectionStringName)" />
+  </elmah>
+  <system.web>
+    <authentication mode="Forms" xdt:Locator="Match(mode)">
+      <forms name=".ASPXAUTH" xdt:Transform="SetAttributes(name)"/>
+    </authentication>
+    <membership defaultProvider="AcsMembershipProvider" xdt:Transform="SetAttributes(defaultProvider)">
+      <providers>
+        <remove name="AcsMembershipProvider" xdt:Transform="InsertIfMissing" />
+        <add connectionString="ACSAuthorizationProviderCS" name="AcsMembershipProvider" type="AcsAuthorizationProvider.Web.Security.AcsMembershipProvider" xdt:Transform="SetAttributes(connectionString, name)" xdt:Locator="Match(type)"/>
+      </providers>
+    </membership>
+    <roleManager defaultProvider="AcsRoleProvider" xdt:Transform="SetAttributes(defaultProvider)">
+      <providers>
+        <clear />
+        <add name="AcsRoleProvider" type="AcsAuthorizationProvider.Web.Security.AcsRoleProvider, AcsAuthorizationProvider.Web.Security" xdt:Transform="SetAttributes(name)" xdt:Locator="Match(type)" />
+      </providers>
+    </roleManager>
+    <httpModules xdt:Transform="InsertIfMissing">
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" xdt:Transform="InsertIfMissing"/>
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" xdt:Transform="InsertIfMissing"/>
+    </httpModules>
+    <httpHandlers xdt:Transform="InsertIfMissing">
+      <add path="elmah.axd" verb="POST,GET,HEAD" type="Elmah.ErrorLogPageFactory, Elmah" xdt:Transform="InsertIfMissing" />
+    </httpHandlers>
+  </system.web>
+  <system.webServer xdt:Transform="InsertIfMissing">
+    <validation validateIntegratedModeConfiguration="false" xdt:Transform="InsertIfMissing" />
+    <modules runAllManagedModulesForAllRequests="true" xdt:Transform="SetAttributes(runAllManagedModulesForAllRequests)">
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" xdt:Transform="InsertIfMissing"/>
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" xdt:Transform="InsertIfMissing"/>
+    </modules>
+    <handlers xdt:Transform="InsertIfMissing">
+      <remove name="elmah" xdt:Transform="InsertIfMissing" />
+      <add name="elmah" path="elmah.axd" verb="POST,GET,HEAD" type="Elmah.ErrorLogPageFactory, Elmah" xdt:Transform="InsertIfMissing" />
+    </handlers>
+  </system.webServer>
+  <location path="elmah.axd" xdt:Transform="InsertIfMissing" xdt:Locator="Match(path)">
+    <system.web>
+      <authorization>
+        <allow roles="ADM,DEV" xdt:Transform="InsertIfMissing" />
+        <deny users="?,*" xdt:Transform="InsertIfMissing" />
+      </authorization>
+    </system.web>
+  </location>
+</configuration>

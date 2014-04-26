@@ -1,0 +1,7 @@
+﻿<?xml version="1.0"?>
+<connectionStrings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <add xdt:Transform="RemoveAll" xdt:Locator="Condition(contains(@connectionString, 'acs_ap'))" />
+  <add xdt:Transform="RemoveAll" xdt:Locator="Condition(contains(@name, 'elmah') or contains(@name, 'Elmah') or contains(@name, 'ELMAH'))" />
+  <add name="ElmahCS" connectionString="server=bfsdev2.ucmerced.edu;User id=mgrdev2;pwd=ucmerced01;database=datahub" providerName="System.Data.SqlClient" xdt:Transform="Insert"/>
+  <add name="ACSAuthorizationProviderCS" connectionString="metadata=res://*/ApAcsData.csdl|res://*/ApAcsData.ssdl|res://*/ApAcsData.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=BFSDEV3.UCMERCED.EDU,1433;initial catalog=acs_ap;user id=mgrdev3;password=ucmerced01;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" xdt:Transform="Insert"/>
+</connectionStrings>

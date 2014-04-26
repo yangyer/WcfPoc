@@ -1,0 +1,10 @@
+﻿<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections>
+    <section name="AcsAuthorizationProvider.Data" type="AcsAuthorizationProvider.Data.Bases.NetTiersServiceSection, AcsAuthorizationProvider.Data" allowDefinition="MachineToApplication" restartOnExternalChanges="true" xdt:Transform="Insert"/>
+  </configSections>
+  <AcsAuthorizationProvider.Data defaultProvider="SqlNetTiersProvider" xdt:Transform="InsertAfter(/configuration/configSections)">
+    <providers>
+      <add name="SqlNetTiersProvider" type="AcsAuthorizationProvider.Data.SqlClient.SqlNetTiersProvider, AcsAuthorizationProvider.Data.SqlClient" connectionStringName="AcsAuthorizationProviderCS" providerInvariantName="System.Data.SqlClient" entityFactoryType="AcsAuthorizationProvider.Entities.EntityFactory" useEntityFactory="true" enableEntityTracking="false" enableMethodAuthorization="false" useStoredProcedure="false" defaultCommandTimeout="30"/>
+    </providers>
+  </AcsAuthorizationProvider.Data>
+</configuration>
